@@ -15,6 +15,13 @@ export const ColorModeSwitcher = (props) => {
       variant='ghost'
       onClick={toggleColorMode}
       icon={<SwitchIcon />}
+      alignSelf='flex-end'
+      m={3}
+      isRound='true'
+      color='gray.500'
+      _hover={{
+        backgroundColor: useColorModeValue('blue.900', 'blue.300'),
+      }}
       {...props}
     />
   );
