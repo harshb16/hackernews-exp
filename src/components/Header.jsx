@@ -1,11 +1,14 @@
-import { Heading } from '@chakra-ui/layout';
+import { Heading, useColorModeValue } from '@chakra-ui/react';
 
 const Header = () => {
   return (
     <Heading
       fontWeight='light'
-      fontSize={{ base: 'xl', sm: '2xl', lg: '3xl', xl: '5xl' }}
-      bgGradient='linear(to-r, blue.600, blue.400)'
+      fontSize={{ base: '2xl', sm: '3xl', lg: '5xl', xl: '6xl' }}
+      bgGradient={useColorModeValue(
+        'linear(to-r, blue.600, blue.800)',
+        'linear(to-r, blue.300, blue.500)'
+      )}
       bgClip='text'
     >
       Hackernews
