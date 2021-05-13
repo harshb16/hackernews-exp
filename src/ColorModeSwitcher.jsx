@@ -20,7 +20,7 @@ export const ColorModeSwitcher = (props) => {
       color='gray.500'
       m='5'
       _hover={{
-        backgroundColor: useColorModeValue('blue.900', 'blue.300'),
+        backgroundColor: useColorModeValue('blue.900', 'blue.600'),
       }}
       {...props}
     />
