@@ -1,10 +1,10 @@
 import { extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 
 const styles = {
   global: (props) => ({
-    body: {
-      bg: mode('blue.200', 'blue.900')(props),
+    'html, body': {
+      bgColor: props.colorMode === 'light' ? 'blue.300' : 'blue.900',
+      fontFamily: 'mono',
     },
   }),
 };

@@ -1,8 +1,8 @@
-import { VStack, Spacer } from '@chakra-ui/react';
+import { Spacer, VStack } from '@chakra-ui/react';
 import React from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import News from './components/News';
+import NewsItem from './components/NewsItem';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Header />
       <Spacer />
-      <News />
+      <NewsItem />
     </VStack>
   );
 }
