@@ -5,6 +5,7 @@ const HackernewsLink = () => {
   return (
     <HStack color='gray.500'>
       <Link
+        fontSize={{ base: 'xs', sm: 'sm' }}
         href='https://news.ycombinator.com'
         isExternal
         d='flex'

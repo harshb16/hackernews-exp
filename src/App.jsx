@@ -6,7 +6,7 @@ import NewsItem from './components/NewsItem';
 
 function App() {
   return (
-    <VStack spacing='4'>
+    <VStack spacing='2'>
       <Navbar />
       <Header />
       <Spacer />

@@ -1,31 +1,37 @@
-import { useColorModeValue } from '@chakra-ui/color-mode';
-import { Box, Flex, Link } from '@chakra-ui/layout';
+import {
+  Box,
+  Flex,
+  Link,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 
 const NewsItem = () => {
+  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
+  const descColor = useColorModeValue('gray.900', 'gray.400');
+
   return (
     <Box
-      mx='auto'
       px={4}
       py={2}
       rounded='lg'
       shadow='lg'
       bg={useColorModeValue('gray.400', 'blue.800')}
-      maxW='5xl'
+      maxW={{ base: '90%', sm: '95%', md: '3xl' }}
     >
       <Box mt={2}>
-        <Flex justifyContent='space-between' mb='4'>
+        <Flex justifyContent='space-between' mb='4' alignItems='center'>
           <chakra.p
-            fontSize='lg'
             color={useColorModeValue('gray.700', 'gray.100')}
-            fontWeight='bold'
-            letterSpacing='wide'
+            fontWeight={{ base: 'normal', md: 'bold' }}
+            fontSize={{ base: 'xs', md: 'sm', lg: 'xl' }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </chakra.p>
           <chakra.p
-            px={2}
-            py={1}
+            px={{ base: '1', md: '2' }}
+            py={{ base: '0', sm: '1' }}
             bg={useColorModeValue('gray.700', 'blue.700')}
             color={useColorModeValue('gray.300', 'gray.100')}
             fontSize='xs'
@@ -34,20 +40,28 @@ const NewsItem = () => {
             Category
           </chakra.p>
         </Flex>
-        <chakra.p
-          mt={2}
-          fontSize='sm'
-          color={useColorModeValue('gray.900', 'gray.400')}
-        >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-          expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-          enim reprehenderit nisi, accusamus delectus nihil quis facere in modi
-          ratione libero!
-        </chakra.p>
+        {isLargerThan768 && (
+          <chakra.p mt={2} fontSize='sm' color={descColor}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
+            expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
+            enim reprehenderit nisi, accusamus delectus nihil quis facere in
+            modi ratione libero!
+          </chakra.p>
+        )}
       </Box>
 
-      <Flex justifyContent='space-between' alignItems='center' mt={6}>
-        <Link color={useColorModeValue('black', 'gray.100')}>Read more</Link>
+      <Flex
+        justifyContent='space-between'
+        alignItems='center'
+        mt={6}
+        fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
+      >
+        <Link
+          fontWeight='hairline'
+          color={useColorModeValue('black', 'gray.100')}
+        >
+          Read more
+        </Link>
         <chakra.p
           color={useColorModeValue('black', 'gray.100')}
           fontWeight='semibold'
