@@ -16,9 +16,9 @@ export const ColorModeSwitcher = (props) => {
       onClick={toggleColorMode}
       icon={<SwitchIcon />}
       alignSelf='flex-end'
-      m={3}
       isRound='true'
       color='gray.500'
+      m='5'
       _hover={{
         backgroundColor: useColorModeValue('blue.900', 'blue.300'),
       }}

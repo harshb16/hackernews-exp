@@ -7,7 +7,7 @@ import Header from './components/Header';
 function App() {
   return (
     <VStack>
-      <HStack justifyContent='space-between'>
+      <HStack justifyContent='space-between' alignItems='center' w='full' p='4'>
         <HackernewsLink />
         <Spacer />
         <ColorModeSwitcher />
