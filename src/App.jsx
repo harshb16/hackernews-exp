@@ -4,11 +4,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 function App() {
   return (
-    <VStack
-      minH='100vh'
-      spacing={8}
-      bg={useColorModeValue('blue.300', 'blue.900')}
-    >
+    <VStack spacing={8}>
       <ColorModeSwitcher
         alignSelf='flex-end'
         m={5}
