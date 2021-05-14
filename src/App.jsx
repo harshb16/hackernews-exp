@@ -1,10 +1,9 @@
 import { Spacer, VStack } from '@chakra-ui/react';
-import React from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import NewsItem from './components/NewsItem';
 
-function App() {
+const App = () => {
   return (
     <VStack spacing='2'>
       <Navbar />
@@ -13,6 +12,6 @@ function App() {
       <NewsItem />
     </VStack>
   );
-}
+};
 
 export default App;

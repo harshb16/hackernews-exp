@@ -6,8 +6,18 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
+import { useContext, useEffect } from 'react';
+import NewsContext from '../store/news-context';
 
 const NewsItem = () => {
+  const newsCtx = useContext(NewsContext);
+  const newsFetch = newsCtx.fetchNews;
+
+  useEffect(() => {
+    newsFetch();
+    return () => {};
+  }, [newsFetch]);
+
   const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
   const descColor = useColorModeValue('gray.900', 'gray.400');
 
@@ -27,7 +37,7 @@ const NewsItem = () => {
             fontWeight={{ base: 'normal', md: 'bold' }}
             fontSize={{ base: 'xs', md: 'sm', lg: 'xl' }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            {newsCtx.story}
           </chakra.p>
           <chakra.p
             px={{ base: '1', md: '2' }}
@@ -37,7 +47,7 @@ const NewsItem = () => {
             fontSize='xs'
             rounded='md'
           >
-            Category
+            {''}
           </chakra.p>
         </Flex>
         {isLargerThan768 && (
