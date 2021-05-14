@@ -4,6 +4,8 @@ import NewsContext from './news-context';
 
 const NewsProvider = ({ children }) => {
   const [storyTitle, setStoryTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [url, setUrl] = useState('');
 
   const fetchHackerNews = async () => {
     try {
@@ -14,10 +16,15 @@ const NewsProvider = ({ children }) => {
       const topstory = await axios.get(
         `https://hacker-news.firebaseio.com/v0/item/${newsIds.data[0]}.json`
       );
-
-      const news = await topstory.data.title;
-      setStoryTitle(news);
       console.log(topstory);
+
+      const story = await topstory.data.title;
+      const author = await topstory.data.by;
+      const url = await topstory.data.url;
+
+      setStoryTitle(story);
+      setAuthor(author);
+      setUrl(url);
     } catch (error) {
       console.log(error);
     }
@@ -26,6 +33,8 @@ const NewsProvider = ({ children }) => {
   const newsContext = {
     // newsData: {},
     story: storyTitle,
+    author: author,
+    url: url,
     fetchNews: fetchHackerNews,
   };
 

@@ -1,10 +1,4 @@
-import {
-  Box,
-  Flex,
-  Link,
-  useColorModeValue,
-  useMediaQuery,
-} from '@chakra-ui/react';
+import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 import { useContext, useEffect } from 'react';
 import NewsContext from '../store/news-context';
@@ -18,9 +12,6 @@ const NewsItem = () => {
     return () => {};
   }, [newsFetch]);
 
-  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
-  const descColor = useColorModeValue('gray.900', 'gray.400');
-
   return (
     <Box
       px={4}
@@ -28,57 +19,40 @@ const NewsItem = () => {
       rounded='lg'
       shadow='lg'
       bg={useColorModeValue('gray.400', 'blue.800')}
-      maxW={{ base: '90%', sm: '95%', md: '3xl' }}
+      maxW='4xl'
+      // maxW={{ base: '90%', sm: '95%', md: '3xl' }}
     >
-      <Box mt={2}>
-        <Flex justifyContent='space-between' mb='4' alignItems='center'>
-          <chakra.p
-            color={useColorModeValue('gray.700', 'gray.100')}
-            fontWeight={{ base: 'normal', md: 'bold' }}
-            fontSize={{ base: 'xs', md: 'sm', lg: 'xl' }}
-          >
-            {newsCtx.story}
-          </chakra.p>
-          <chakra.p
-            px={{ base: '1', md: '2' }}
-            py={{ base: '0', sm: '1' }}
-            bg={useColorModeValue('gray.700', 'blue.700')}
-            color={useColorModeValue('gray.300', 'gray.100')}
-            fontSize='xs'
-            rounded='md'
-          >
-            {''}
-          </chakra.p>
-        </Flex>
-        {isLargerThan768 && (
-          <chakra.p mt={2} fontSize='sm' color={descColor}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-            expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-            enim reprehenderit nisi, accusamus delectus nihil quis facere in
-            modi ratione libero!
-          </chakra.p>
-        )}
-      </Box>
+      <HStack justifyContent='space-between' mt='2' mb='4' alignItems='center'>
+        <chakra.p
+          color={useColorModeValue('gray.700', 'gray.100')}
+          fontWeight={{ base: 'normal', md: 'bold' }}
+          fontSize={{ base: 'xs', md: 'sm', lg: 'xl' }}
+        >
+          {newsCtx.story}
+        </chakra.p>
+        <Spacer />
+        <chakra.p
+          px={{ base: '1', md: '2' }}
+          py={{ base: '0', sm: '1' }}
+          bg={useColorModeValue('gray.700', 'blue.700')}
+          color={useColorModeValue('gray.300', 'gray.100')}
+          fontSize='xs'
+          rounded='md'
+        >
+          {newsCtx.author}
+        </chakra.p>
+      </HStack>
 
-      <Flex
-        justifyContent='space-between'
-        alignItems='center'
+      <Link
+        isExternal
+        href={newsCtx.url}
+        fontWeight='hairline'
         mt={6}
         fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
+        color={useColorModeValue('black', 'gray.100')}
       >
-        <Link
-          fontWeight='hairline'
-          color={useColorModeValue('black', 'gray.100')}
-        >
-          Read more
-        </Link>
-        <chakra.p
-          color={useColorModeValue('black', 'gray.100')}
-          fontWeight='semibold'
-        >
-          News
-        </chakra.p>
-      </Flex>
+        Read more
+      </Link>
     </Box>
   );
 };
