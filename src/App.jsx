@@ -8,15 +8,15 @@ import NewsContext from './store/news-context';
 const App = () => {
   const newsCtx = useContext(NewsContext);
 
-  const newsFetch = newsCtx.fetchNews;
+  const { fetchNews: newsFetch } = newsCtx;
 
   useEffect(() => {
     newsFetch();
+
     // return () => {};
   }, [newsFetch]);
-
   return (
-    <VStack spacing='2'>
+    <VStack spacing='4'>
       <Navbar />
       <Header />
       <Spacer />
