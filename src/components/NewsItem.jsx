@@ -1,11 +1,4 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  Link,
-  Spacer,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 import { useContext } from 'react';
 import NewsContext from '../store/news-context';
@@ -20,7 +13,8 @@ const NewsItem = () => {
       rounded='lg'
       shadow='lg'
       bg={useColorModeValue('gray.400', 'blue.800')}
-      maxW='4xl'
+      // maxW='4xl'
+      maxW={{ base: '90%', sm: '95%', lg: '110%' }}
     >
       <HStack justifyContent='space-between' mt='2' mb='4' alignItems='center'>
         <chakra.p
@@ -43,19 +37,20 @@ const NewsItem = () => {
         </chakra.p>
       </HStack>
 
-      <Flex
-        mt={6}
+      <HStack
+        mt={4}
         justifyContent='space-between'
         fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
         color={useColorModeValue('black', 'gray.100')}
       >
-        <Link isExternal href={newsCtx.url} fontWeight='hairline'>
+        <Link isExternal href={newsCtx.url} fontWeight='hairline' mr='10'>
           Read more
         </Link>
-        <chakra.p>{`${newsCtx.points} ${
+        <Spacer />
+        <chakra.p ml='10'>{`${newsCtx.points} ${
           newsCtx.points === 1 ? 'Point' : 'Points'
         }`}</chakra.p>
-      </Flex>
+      </HStack>
     </Box>
   );
 };

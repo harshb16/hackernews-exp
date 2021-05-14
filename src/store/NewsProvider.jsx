@@ -15,7 +15,7 @@ const NewsProvider = ({ children }) => {
       );
 
       const topstory = await axios.get(
-        `https://hacker-news.firebaseio.com/v0/item/${newsIds.data[0]}.json`
+        `https://hacker-news.firebaseio.com/v0/item/${newsIds.data[3]}.json`
       );
       console.log(topstory);
 
