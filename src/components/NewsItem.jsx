@@ -1,16 +1,17 @@
-import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  Spacer,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import NewsContext from '../store/news-context';
 
 const NewsItem = () => {
   const newsCtx = useContext(NewsContext);
-  const newsFetch = newsCtx.fetchNews;
-
-  useEffect(() => {
-    newsFetch();
-    return () => {};
-  }, [newsFetch]);
 
   return (
     <Box
@@ -20,7 +21,6 @@ const NewsItem = () => {
       shadow='lg'
       bg={useColorModeValue('gray.400', 'blue.800')}
       maxW='4xl'
-      // maxW={{ base: '90%', sm: '95%', md: '3xl' }}
     >
       <HStack justifyContent='space-between' mt='2' mb='4' alignItems='center'>
         <chakra.p
@@ -43,35 +43,21 @@ const NewsItem = () => {
         </chakra.p>
       </HStack>
 
-      <Link
-        isExternal
-        href={newsCtx.url}
-        fontWeight='hairline'
+      <Flex
         mt={6}
+        justifyContent='space-between'
         fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
         color={useColorModeValue('black', 'gray.100')}
       >
-        Read more
-      </Link>
+        <Link isExternal href={newsCtx.url} fontWeight='hairline'>
+          Read more
+        </Link>
+        <chakra.p>{`${newsCtx.points} ${
+          newsCtx.points === 1 ? 'Point' : 'Points'
+        }`}</chakra.p>
+      </Flex>
     </Box>
   );
 };
 
 export default NewsItem;
-
-// const News = () => {
-//   return (
-//     <Card minW='5xl' shadow='xl' bgColor='blue.700' opacity='80%'>
-//       <Stack spacing='4'>
-//         <Text textColor='gray.400' opacity='100' fontSize='2xl'>
-//           HackerNews
-//         </Text>
-//         <Text textColor='gray.300' opacity='100' fontSize='md'>
-//           HackerNews 2
-//         </Text>
-//       </Stack>
-//     </Card>
-//   );
-// };
-
-// export default News;

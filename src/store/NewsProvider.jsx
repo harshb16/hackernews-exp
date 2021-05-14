@@ -1,13 +1,14 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import NewsContext from './news-context';
 
 const NewsProvider = ({ children }) => {
-  const [storyTitle, setStoryTitle] = useState('');
+  const [story, setStory] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
+  const [points, setPoints] = useState('');
 
-  const fetchHackerNews = async () => {
+  const fetchHackerNews = useCallback(async () => {
     try {
       const newsIds = await axios.get(
         'https://hacker-news.firebaseio.com/v0/topstories.json'
@@ -18,23 +19,28 @@ const NewsProvider = ({ children }) => {
       );
       console.log(topstory);
 
-      const story = await topstory.data.title;
-      const author = await topstory.data.by;
-      const url = await topstory.data.url;
+      const allNewsData = {
+        newsStory: topstory.data.title,
+        newsAuthor: topstory.data.by,
+        newsUrl: topstory.data.url,
+        newsPoints: +topstory.data.score,
+      };
 
-      setStoryTitle(story);
-      setAuthor(author);
-      setUrl(url);
+      setStory(allNewsData.newsStory);
+      setAuthor(allNewsData.newsAuthor);
+      setUrl(allNewsData.newsUrl);
+      setPoints(allNewsData.newsPoints);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   const newsContext = {
     // newsData: {},
-    story: storyTitle,
+    story: story,
     author: author,
     url: url,
+    points: points,
     fetchNews: fetchHackerNews,
   };
 
