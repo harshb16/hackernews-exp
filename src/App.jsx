@@ -16,10 +16,16 @@ const App = () => {
     // return () => {};
   }, [newsFetch]);
   return (
-    <VStack spacing='4'>
+    <VStack spacing='4' m='10'>
       <Navbar />
       <Header />
       <Spacer />
+      <NewsItem />
+      <NewsItem />
+      <NewsItem />
+      <NewsItem />
+      <NewsItem />
+      <NewsItem />
       <NewsItem />
     </VStack>
   );
