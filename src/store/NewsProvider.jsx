@@ -13,19 +13,14 @@ const NewsProvider = ({ children }) => {
   const baseUrl = 'https://hacker-news.firebaseio.com/v0';
 
   const fetchHackerIds = useCallback(async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     try {
       const { data: ids } = await axios.get(`${baseUrl}/topstories.json`);
-      console.log(ids);
-      setIsLoading(false);
-
-      return ids;
+      setNewsIds(ids);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
-
-      return null;
     }
+    // setIsLoading(false);
   }, []);
 
   const fetchHackerStory = useCallback(async (id) => {
@@ -56,7 +51,7 @@ const NewsProvider = ({ children }) => {
     author: author,
     url: url,
     points: points,
-    // ids: newsIds,
+    ids: newsIds,
     fetchStory: fetchHackerStory,
     fetchIds: fetchHackerIds,
     loadingState: isLoading,

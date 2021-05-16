@@ -1,24 +1,27 @@
-import { memo, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import NewsContext from '../store/news-context';
 import NewsItem from './NewsItem';
 
 const NewsList = () => {
   const newsCtx = useContext(NewsContext);
 
-  const { fetchStory: storyFetch, fetchIds: idsFetch } = newsCtx;
+  const { fetchIds: idsFetch, ids: newsIds } = newsCtx;
   useEffect(() => {
     idsFetch();
-    storyFetch(27173717);
 
     // return () => {};
-  }, [idsFetch, storyFetch]);
+  }, [idsFetch]);
+
+  const ids = newsIds.slice(0, 5);
+  console.log(ids);
 
   return (
     <>
-      {}
-      <NewsItem />
+      {ids.map((id) => (
+        <NewsItem key={id} id={id} />
+      ))}
     </>
   );
 };
 
-export default memo(NewsList);
+export default NewsList;

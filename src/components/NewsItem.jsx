@@ -1,11 +1,16 @@
 import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
-import { useContext } from 'react';
+import { memo, useContext, useEffect } from 'react';
 import NewsContext from '../store/news-context';
 import Loader from './Loader';
 
-const NewsItem = () => {
+const NewsItem = ({ id }) => {
   const newsCtx = useContext(NewsContext);
+  const { fetchStory: storyFetch } = newsCtx;
+
+  useEffect(() => {
+    storyFetch(id);
+  }, [id, storyFetch]);
 
   const boxColor = useColorModeValue('gray.400', 'blue.800');
   const storyColor = useColorModeValue('gray.700', 'gray.100');
@@ -72,4 +77,4 @@ const NewsItem = () => {
   );
 };
 
-export default NewsItem;
+export default memo(NewsItem);
