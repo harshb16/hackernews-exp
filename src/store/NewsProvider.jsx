@@ -7,26 +7,38 @@ const NewsProvider = ({ children }) => {
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
   const [points, setPoints] = useState('');
+  const [newsIds, setNewsIds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchHackerNews = useCallback(async () => {
+  const baseUrl = 'https://hacker-news.firebaseio.com/v0';
+
+  const fetchHackerIds = useCallback(async () => {
     setIsLoading(true);
-
     try {
-      const newsIds = await axios.get(
-        'https://hacker-news.firebaseio.com/v0/topstories.json'
-      );
+      const { data: ids } = await axios.get(`${baseUrl}/topstories.json`);
+      console.log(ids);
+      setIsLoading(false);
 
-      const topstory = await axios.get(
-        `https://hacker-news.firebaseio.com/v0/item/${newsIds.data[0]}.json`
-      );
-      console.log(topstory);
+      return ids;
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+
+      return null;
+    }
+  }, []);
+
+  const fetchHackerStory = useCallback(async (id) => {
+    setIsLoading(true);
+    try {
+      const story = await axios.get(`${baseUrl}/item/${id}.json`);
+      console.log(story);
 
       const allNewsData = {
-        newsStory: topstory.data.title,
-        newsAuthor: topstory.data.by,
-        newsUrl: topstory.data.url,
-        newsPoints: +topstory.data.score,
+        newsStory: story.data.title,
+        newsAuthor: story.data.by,
+        newsUrl: story.data.url,
+        newsPoints: +story.data.score,
       };
 
       setStory(allNewsData.newsStory);
@@ -40,12 +52,13 @@ const NewsProvider = ({ children }) => {
   }, []);
 
   const newsContext = {
-    // newsData: {},
     story: story,
     author: author,
     url: url,
     points: points,
-    fetchNews: fetchHackerNews,
+    // ids: newsIds,
+    fetchStory: fetchHackerStory,
+    fetchIds: fetchHackerIds,
     loadingState: isLoading,
   };
 

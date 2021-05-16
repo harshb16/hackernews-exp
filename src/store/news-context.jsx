@@ -1,12 +1,13 @@
 import { createContext } from 'react';
 
 const NewsContext = createContext({
-  // newsData: {},
   story: '',
   author: '',
   url: '',
   points: 1,
-  fetchNews: () => {},
+  ids: [],
+  fetchStory: () => {},
+  fetchIds: () => {},
   loadingState: true,
 });
 
