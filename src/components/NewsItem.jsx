@@ -55,7 +55,7 @@ const NewsItem = ({ id }) => {
           rounded='lg'
           shadow='lg'
           bg={boxColor}
-          maxW={{ base: '90%', sm: '95%', lg: '110%' }}
+          maxW={{ base: 'xs', sm: 'xl', md: 'xl', lg: '3xl', xl: '4xl' }}
         >
           <HStack
             justifyContent='space-between'
@@ -71,6 +71,8 @@ const NewsItem = ({ id }) => {
               {story}
             </chakra.p>
             <Spacer />
+            <Spacer />
+            <chakra.p fontSize='xs'>by</chakra.p>
             <chakra.p
               px={{ base: '1', md: '2' }}
               py={{ base: '0', sm: '1' }}

@@ -1,4 +1,4 @@
-import { HStack, Link } from '@chakra-ui/react';
+import { HStack, Link, useColorModeValue } from '@chakra-ui/react';
 import { FaHackerNewsSquare } from 'react-icons/fa';
 
 const HackernewsLink = () => {
@@ -10,11 +10,11 @@ const HackernewsLink = () => {
         isExternal
         d='flex'
         alignItems='center'
-        color='gray.500'
+        color={useColorModeValue('gray.900', 'gray.500')}
       >
-        Take me to Hackernews
+        Take me to Hackernews &nbsp;
+        <FaHackerNewsSquare />
       </Link>
-      <FaHackerNewsSquare />
     </HStack>
   );
 };

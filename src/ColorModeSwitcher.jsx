@@ -17,10 +17,10 @@ export const ColorModeSwitcher = (props) => {
       icon={<SwitchIcon />}
       alignSelf='flex-end'
       isRound='true'
-      color='gray.500'
       m='5'
+      color={useColorModeValue('gray.900', 'gray.500')}
       _hover={{
-        backgroundColor: useColorModeValue('blue.900', 'blue.600'),
+        backgroundColor: useColorModeValue('transparent', 'blue.600'),
       }}
       {...props}
     />

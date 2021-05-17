@@ -3,7 +3,7 @@ import { extendTheme } from '@chakra-ui/react';
 const styles = {
   global: (props) => ({
     'html, body': {
-      bgColor: props.colorMode === 'light' ? 'blue.300' : 'blue.900',
+      bgColor: props.colorMode === 'light' ? 'blue.600' : 'blue.900',
       fontFamily: 'mono',
     },
   }),
