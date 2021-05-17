@@ -12,7 +12,7 @@ const NewsList = () => {
     // return () => {};
   }, [idsFetch]);
 
-  const ids = newsIds.slice(0, 5);
+  const ids = newsIds.slice(0, 100);
   console.log(ids);
 
   return (

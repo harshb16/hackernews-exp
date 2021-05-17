@@ -1,12 +1,40 @@
 import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
-import { memo, useContext, useEffect } from 'react';
-import NewsContext from '../store/news-context';
+import axios from 'axios';
+import { memo, useCallback, useEffect, useState } from 'react';
 import Loader from './Loader';
 
 const NewsItem = ({ id }) => {
-  const newsCtx = useContext(NewsContext);
-  const { fetchStory: storyFetch } = newsCtx;
+  const [isLoading, setIsLoading] = useState(true);
+  const [story, setStory] = useState(true);
+  const [author, setAuthor] = useState(true);
+  const [url, setUrl] = useState(true);
+  const [points, setPoints] = useState(true);
+
+  const baseUrl = 'https://hacker-news.firebaseio.com/v0';
+
+  const storyFetch = useCallback(async (id) => {
+    setIsLoading(true);
+    try {
+      const story = await axios.get(`${baseUrl}/item/${id}.json`);
+      console.log(story);
+
+      const allNewsData = {
+        newsStory: story.data.title,
+        newsAuthor: story.data.by,
+        newsUrl: story.data.url,
+        newsPoints: +story.data.score,
+      };
+
+      setStory(allNewsData.newsStory);
+      setAuthor(allNewsData.newsAuthor);
+      setUrl(allNewsData.newsUrl);
+      setPoints(allNewsData.newsPoints);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     storyFetch(id);
@@ -20,7 +48,7 @@ const NewsItem = ({ id }) => {
 
   return (
     <>
-      {!newsCtx.loadingState && (
+      {!isLoading && (
         <Box
           px={4}
           py={2}
@@ -40,7 +68,7 @@ const NewsItem = ({ id }) => {
               fontWeight={{ base: 'normal', md: 'bold' }}
               fontSize={{ base: 'xs', md: 'sm', lg: 'xl' }}
             >
-              {newsCtx.story}
+              {story}
             </chakra.p>
             <Spacer />
             <chakra.p
@@ -51,7 +79,7 @@ const NewsItem = ({ id }) => {
               fontSize='xs'
               rounded='md'
             >
-              {newsCtx.author}
+              {author}
             </chakra.p>
           </HStack>
 
@@ -61,18 +89,18 @@ const NewsItem = ({ id }) => {
             fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
             color={linksColor}
           >
-            <Link isExternal href={newsCtx.url} fontWeight='hairline' mr='10'>
+            <Link isExternal href={url} fontWeight='hairline' mr='10'>
               Read more
             </Link>
             <Spacer />
-            <chakra.p ml='10'>{`${newsCtx.points} ${
-              newsCtx.points === 1 ? 'Point' : 'Points'
+            <chakra.p ml='10'>{`${points} ${
+              points === 1 ? 'Point' : 'Points'
             }`}</chakra.p>
           </HStack>
         </Box>
       )}
 
-      {newsCtx.loadingState && <Loader />}
+      {isLoading && <Loader />}
     </>
   );
 };
