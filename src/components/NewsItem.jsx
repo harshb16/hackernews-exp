@@ -17,7 +17,7 @@ const NewsItem = ({ id }) => {
     setIsLoading(true);
     try {
       const story = await axios.get(`${baseUrl}/item/${id}.json`);
-      console.log(story);
+      // console.log(story);
 
       const allNewsData = {
         newsStory: story.data.title,
@@ -55,7 +55,7 @@ const NewsItem = ({ id }) => {
           rounded='lg'
           shadow='lg'
           bg={boxColor}
-          maxW={{ base: 'xs', sm: 'xl', md: 'xl', lg: '3xl', xl: '4xl' }}
+          w={{ base: 'xs', sm: 'sm', md: 'xl', lg: '3xl', xl: '3xl' }}
         >
           <HStack
             justifyContent='space-between'

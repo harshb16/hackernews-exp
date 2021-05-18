@@ -13,7 +13,7 @@ const NewsList = () => {
   }, [idsFetch]);
 
   const ids = newsIds.slice(0, 100);
-  console.log(ids);
+  // console.log(ids);
 
   return (
     <>
