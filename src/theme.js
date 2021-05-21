@@ -4,7 +4,7 @@ const styles = {
   global: (props) => ({
     'html, body': {
       bgColor: props.colorMode === 'light' ? 'blue.600' : 'blue.900',
-      fontFamily: 'mono',
+      fontFamily: 'monospace',
     },
   }),
 };
