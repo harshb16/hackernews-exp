@@ -1,4 +1,11 @@
-import { Box, HStack, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  Spacer,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 import axios from 'axios';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -72,17 +79,23 @@ const NewsItem = ({ id }) => {
             </chakra.p>
             <Spacer />
             <Spacer />
-            <chakra.p fontSize='xs'>by</chakra.p>
-            <chakra.p
-              px={{ base: '1', md: '2' }}
-              py={{ base: '0', sm: '1' }}
-              bg={authorBg}
-              color={authorColor}
-              fontSize='xs'
-              rounded='md'
+            <Flex
+              alignItems='center'
+              justifyContent='space-between'
+              fontSize={{ base: 'xs', md: 'sm', lg: 'lg' }}
             >
-              {author}
-            </chakra.p>
+              <chakra.p mr='2'>by</chakra.p>
+              <Spacer />
+              <chakra.p
+                px={{ base: '1', md: '2' }}
+                py={{ base: '0', sm: '1' }}
+                bg={authorBg}
+                color={authorColor}
+                rounded='md'
+              >
+                {author}
+              </chakra.p>
+            </Flex>
           </HStack>
 
           <HStack
