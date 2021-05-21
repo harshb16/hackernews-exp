@@ -55,7 +55,7 @@ const NewsItem = ({ id }) => {
           rounded='lg'
           shadow='lg'
           bg={boxColor}
-          w={{ base: 'xs', sm: 'sm', md: 'xl', lg: '3xl', xl: '3xl' }}
+          w={{ base: '2xs', sm: 'sm', md: 'xl', lg: '3xl', xl: '3xl' }}
         >
           <HStack
             justifyContent='space-between'
