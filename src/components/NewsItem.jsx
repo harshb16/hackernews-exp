@@ -4,6 +4,7 @@ import {
   HStack,
   Link,
   Spacer,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
@@ -109,9 +110,12 @@ const NewsItem = ({ id }) => {
             fontSize={{ base: 'xs', sm: 'sm', lg: 'md', xl: 'lg' }}
             color={linksColor}
           >
-            <Link isExternal href={url} fontWeight='hairline' mr='10'>
-              Read more
-            </Link>
+            <Flex justifyContent='center' alignItems='baseline'>
+              <Link isExternal href={url} fontWeight='semibold' mr='3'>
+                Read more
+              </Link>
+              <Text cursor='pointer'>Share</Text>
+            </Flex>
             <Spacer />
             <chakra.p ml='10'>{`${points} ${
               points === 1 ? 'Point' : 'Points'
