@@ -8,12 +8,9 @@ const NewsList = () => {
   const { fetchIds: idsFetch, ids: newsIds } = newsCtx;
   useEffect(() => {
     idsFetch();
-
-    // return () => {};
   }, [idsFetch]);
 
   const ids = newsIds.slice(0, 100);
-  // console.log(ids);
 
   return (
     <>
