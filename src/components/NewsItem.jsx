@@ -4,7 +4,7 @@ import {
   HStack,
   Link,
   Spacer,
-  Text,
+  useClipboard,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
@@ -58,6 +58,8 @@ const NewsItem = ({ id }) => {
   const authorBg = useColorModeValue('gray.700', 'blue.700');
   const authorColor = useColorModeValue('gray.300', 'gray.100');
   const linksColor = useColorModeValue('black', 'gray.100');
+
+  const { hasCopied, onCopy } = useClipboard(url);
 
   return (
     <>
@@ -114,7 +116,9 @@ const NewsItem = ({ id }) => {
               <Link isExternal href={url} fontWeight='semibold' mr='3'>
                 Read more
               </Link>
-              <Text cursor='pointer'>Share</Text>
+              <chakra.button onClick={onCopy} cursor='pointer'>
+                {hasCopied ? 'Copied!' : 'Copy link'}
+              </chakra.button>
             </Flex>
             <Spacer />
             <chakra.p ml='10'>{`${points} ${

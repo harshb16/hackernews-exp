@@ -10,8 +10,7 @@ const NewsList = () => {
     idsFetch();
   }, [idsFetch]);
 
-  const ids = newsIds;
-  // const ids = newsIds.slice(0, 100);
+  const ids = newsIds.slice(0, 50);
 
   return (
     <>
