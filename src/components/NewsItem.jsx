@@ -13,7 +13,7 @@ import { memo, useCallback, useEffect, useState } from 'react';
 import Loader from './Loader';
 
 const NewsItem = ({ id }) => {
-  const [allData, setAllData] = useState([]);
+  // const [allData, setAllData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [story, setStory] = useState('');
