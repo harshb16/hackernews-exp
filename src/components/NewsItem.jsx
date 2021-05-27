@@ -13,8 +13,9 @@ import { memo, useCallback, useEffect, useState } from 'react';
 import Loader from './Loader';
 
 const NewsItem = ({ id }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [allData, setAllData] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
   const [story, setStory] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
@@ -22,32 +23,27 @@ const NewsItem = ({ id }) => {
 
   const baseUrl = 'https://hacker-news.firebaseio.com/v0';
 
-  const storyFetch = useCallback(
-    async (id) => {
-      setIsLoading(true);
-      try {
-        const story = await axios.get(`${baseUrl}/item/${id}.json`);
+  const storyFetch = useCallback(async (id) => {
+    setIsLoading(true);
+    try {
+      const story = await axios.get(`${baseUrl}/item/${id}.json`);
 
-        const allNewsData = {
-          newsStory: story.data.title,
-          newsAuthor: story.data.by,
-          newsUrl: story.data.url,
-          newsPoints: +story.data.score,
-        };
-        setAllData((prevData) => [...prevData, allNewsData]);
-        console.log(allData);
+      const allNewsData = {
+        newsStory: story.data.title,
+        newsAuthor: story.data.by,
+        newsUrl: story.data.url,
+        newsPoints: +story.data.score,
+      };
 
-        setStory(allNewsData.newsStory);
-        setAuthor(allNewsData.newsAuthor);
-        setUrl(allNewsData.newsUrl);
-        setPoints(allNewsData.newsPoints);
-      } catch (error) {
-        console.log(error);
-      }
-      setIsLoading(false);
-    },
-    [allData]
-  );
+      setStory(allNewsData.newsStory);
+      setAuthor(allNewsData.newsAuthor);
+      setUrl(allNewsData.newsUrl);
+      setPoints(allNewsData.newsPoints);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     storyFetch(id);
