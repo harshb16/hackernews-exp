@@ -11,7 +11,7 @@ const styles = {
 
 const config = {
   initialColorMode: 'system',
-  useSystemColorMode: true,
+  // useSystemColorMode: true,
 };
 
 const theme = extendTheme({ config, styles });
